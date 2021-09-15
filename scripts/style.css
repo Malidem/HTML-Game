@@ -31,7 +31,9 @@ li a:hover {
   text-align:center
 }
 body {
-  background-image: url('../images/galliga background2.jpg');
+  background-image: url('../images/Art/background.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 p, h3, h1 {
@@ -77,4 +79,13 @@ table, th, td {
 }
 .controls {
   color:cyan
+}
+.logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 4px;
+  height:100px;
+  width:100px;
+  border: white solid 1px;
 }
