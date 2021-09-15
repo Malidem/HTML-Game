@@ -11,14 +11,24 @@ public class PlayerManager : MonoBehaviour
     public GameObject background;
     public GameObject bullet;
     public GameObject canvas;
+    public GameObject eventSystem;
+    private GameManager gameManager;
+
+    void Start()
+    {
+        gameManager = eventSystem.GetComponent<GameManager>();
+    }
 
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speed);
-        transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speed);
+        if (gameManager.canMove)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speed);
+            transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speed); 
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -38,6 +48,7 @@ public class PlayerManager : MonoBehaviour
         if ((transform.position.y + sizeY) > rect.rect.height)
         {
             transform.position = new Vector2(transform.position.x, (rect.rect.height - sizeY));
+            print("Player Y:" + transform.position.y);
         }
 
         if ((transform.position.x - sizeX) < 0)
