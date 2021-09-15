@@ -68,10 +68,13 @@ table, th, td {
   transform: scale(1.1);
 }
 #link {
-  color: rgb(71, 231, 204);
+  color: cyan;
   text-decoration: none;
 }
 #link:hover {
   color:rgb(100, 138, 138);
   text-decoration: none;
+}
+.controls {
+  color:cyan
 }
