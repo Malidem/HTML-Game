@@ -362,6 +362,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1386612222}
+  enemyType1: {fileID: 2500958488499531473, guid: 4492c82e334d95244b87e20c49023ab4,
+    type: 3}
+  background: {fileID: 1142424723}
+  canvas: {fileID: 693231156}
   canMove: 0
 --- !u!1 &693231156
 GameObject:
