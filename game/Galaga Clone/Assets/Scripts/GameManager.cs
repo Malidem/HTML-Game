@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class GameManager : MonoBehaviour
     public GameObject enemyType1;
     public GameObject background;
     public GameObject canvas;
-    public GameObject dummy;
+    public GameObject gameOverMenu;
+    public GameObject HUD;
+    public int points;
 
     [HideInInspector]
     public bool gameStarted;
@@ -16,8 +19,15 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Enemies = new List<GameObject>();
     [HideInInspector]
     public bool gameOver;
+    [HideInInspector]
+    public Transform[] HUDElements;
 
     private int waveAmount = 2;
+
+    void Start()
+    {
+        HUDElements = HUD.GetComponentsInChildren<Transform>();
+    }
 
     public void SpawnEnemies()
     {
@@ -70,6 +80,14 @@ public class GameManager : MonoBehaviour
                 }
                 SpawnEnemies();
             }
+
+            HUDElements[2].gameObject.GetComponent<Text>().text = "Points: " + points;
+        }
+
+        if (gameOver)
+        {
+            gameOverMenu.SetActive(true);
+            gameOverMenu.GetComponentsInChildren<Transform>()[2].GetComponent<Text>().text = "Final Points: " + points;
         }
     }
 }
