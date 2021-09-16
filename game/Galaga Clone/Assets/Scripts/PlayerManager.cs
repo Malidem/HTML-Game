@@ -12,11 +12,16 @@ public class PlayerManager : MonoBehaviour
     public GameObject bullet;
     public GameObject canvas;
     public GameObject eventSystem;
+    public GameObject health;
+    public GameObject HUD;
+
     private GameManager gameManager;
+    private List<GameObject> allHealth = new List<GameObject>();
 
     void Start()
     {
         gameManager = eventSystem.GetComponent<GameManager>();
+        AddHealth(3);
     }
 
     void Update()
@@ -58,6 +63,24 @@ public class PlayerManager : MonoBehaviour
         if ((transform.position.y - sizeY) < 0)
         {
             transform.position = new Vector2(transform.position.x, (0 + sizeY));
+        }
+    }
+
+    public void RemoveHealth(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject obj = allHealth[allHealth.Count];
+            allHealth.Remove(obj);
+            Destroy(obj);
+        }
+    }
+
+    public void AddHealth(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            allHealth.Add(Instantiate(health, new Vector2(0, 0), HUD.transform.rotation, HUD.GetComponentsInChildren<Transform>()[1]));
         }
     }
 }
