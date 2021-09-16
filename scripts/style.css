@@ -1,57 +1,9 @@
-<<<<<<< Updated upstream
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-li {
-  float: left;
-}
-li a {
-  display: block;
-  padding: 8px;
-  color: rgb(71, 71, 231);
-  background-color: rgb(228, 228, 228);
-  text-decoration: none;
-}
-||||||| constructed merge base
   ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
   }
-  li {
-    float: left;
-  }
-  li a {
-    display: block;
-    padding: 8px;
-    background-color: rgb(228, 228, 228);
-    
-  } 
-  .center-image{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    border: 5px solid rgb(0, 0, 0);
-  } 
-  .center-text{
-    text-align:center
-  }
-  body {
-    background-image: url('../images/galliga background2.jpg');
-  }
-=======
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
   li a:hover{
     color:darkviolet;
   }
@@ -77,7 +29,6 @@ li a {
   body {
     background-image: url('../images/galliga background2.jpg');
   }
->>>>>>> Stashed changes
 
 li a:hover {
   color: rgb(114, 114, 216);

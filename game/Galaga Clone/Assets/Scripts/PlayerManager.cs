@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        if (gameManager.canMove)
+        if (gameManager.gameStarted)
         {
             transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speed);
             transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speed); 
@@ -48,7 +48,6 @@ public class PlayerManager : MonoBehaviour
         if ((transform.position.y + sizeY) > rect.rect.height)
         {
             transform.position = new Vector2(transform.position.x, (rect.rect.height - sizeY));
-            print("Player Y:" + transform.position.y);
         }
 
         if ((transform.position.x - sizeX) < 0)

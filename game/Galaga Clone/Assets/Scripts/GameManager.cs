@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,55 +11,30 @@ public class GameManager : MonoBehaviour
     public GameObject dummy;
 
     [HideInInspector]
-    public bool canMove;
+    public bool gameStarted;
+    [HideInInspector]
+    public List<GameObject> Enemies = new List<GameObject>();
 
-    private int num = 10;
-
-    void Start()
-    {
-
-    }
+    private int waveAmount = 2;
 
     public void SpawnEnemies()
     {
-        for (int i = 0; i < num; i++)
+        for (int i = 0; i < waveAmount; i++)
         {
-            Vector2 pos = GenerateSpawnPos();
-            if (WillEnemyCollide(pos))
+            RectTransform rect = (RectTransform)background.transform;
+            int num = Random.Range(1, 4);
+            if (num == 1)
             {
-                Instantiate(enemyType1, pos, transform.rotation, canvas.transform);
+                Enemies.Add(Instantiate(enemyType1, new Vector2(rect.rect.width + 25, Random.Range(0, rect.rect.height)), transform.rotation, canvas.transform));
             }
-            //else
-            //{
-            //    num++;
-            //}
-        }
-    }
-
-    Vector2 GenerateSpawnPos()
-    {
-        RectTransform rect = (RectTransform)background.transform;
-        return new Vector2(Random.Range((rect.rect.width / 2), rect.rect.width),
-                Random.Range(0, rect.rect.height));
-    }
-
-    bool WillEnemyCollide(Vector2 pos)
-    {
-        GameObject instance = Instantiate(dummy, pos, transform.rotation, canvas.transform);
-        Collider2D[] colliding = {};
-
-        instance.AddComponent<BoxCollider2D>();
-        instance.GetComponent<BoxCollider2D>().size = enemyType1.GetComponent<BoxCollider2D>().size;
-        instance.GetComponent<BoxCollider2D>().offset = enemyType1.GetComponent<BoxCollider2D>().offset;
-        instance.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D().NoFilter(), colliding);
-        Destroy(instance);
-        if (colliding.Length > 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
+            else if (num == 2)
+            {
+                Enemies.Add(Instantiate(enemyType1, new Vector2(Random.Range((rect.rect.width / 3) * 2, rect.rect.width + 25), rect.rect.height + 25), transform.rotation, canvas.transform));
+            }
+            else if (num == 3)
+            {
+                Enemies.Add(Instantiate(enemyType1, new Vector2(Random.Range((rect.rect.width / 3) * 2, rect.rect.width + 25), -25), transform.rotation, canvas.transform));
+            }
         }
     }
 
@@ -74,6 +51,22 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 0;
                 pauseMenu.SetActive(true);
+            }
+        }
+
+        if (gameStarted == true)
+        {
+            if (Enemies.Count <= 0)
+            {
+                if (waveAmount >= 5)
+                {
+                    waveAmount += Random.Range(1, 6);
+                }
+                else
+                {
+                    waveAmount++;
+                }
+                SpawnEnemies();
             }
         }
     }
