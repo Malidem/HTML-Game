@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
@@ -17,5 +18,12 @@ public class UI : MonoBehaviour
         gameManager.gameStarted = true;
         gameManager.SpawnEnemies();
         gameObject.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void LoadScene(string scene)
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene);
+        SceneManager.UnloadSceneAsync(currentScene);
     }
 }

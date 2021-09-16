@@ -29,15 +29,15 @@ public class PlayerManager : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        if (gameManager.gameStarted)
+        if (gameManager.gameStarted && gameManager.gameOver == false)
         {
             transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speed);
-            transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speed); 
-        }
+            transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speed);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(bullet, transform.position, transform.rotation, canvas.transform);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(bullet, transform.position, transform.rotation, canvas.transform);
+            }
         }
 
         RectTransform rect = (RectTransform)background.transform;
@@ -63,6 +63,12 @@ public class PlayerManager : MonoBehaviour
         if ((transform.position.y - sizeY) < 0)
         {
             transform.position = new Vector2(transform.position.x, (0 + sizeY));
+        }
+
+        if (allHealth.Count <= 0)
+        {
+            gameManager.gameOver = true;
+            Destroy(gameObject);
         }
     }
 

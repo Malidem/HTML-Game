@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public bool gameStarted;
     [HideInInspector]
     public List<GameObject> Enemies = new List<GameObject>();
+    [HideInInspector]
+    public bool gameOver;
 
     private int waveAmount = 2;
 
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (gameStarted == true)
+        if (gameStarted && gameOver == false)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
