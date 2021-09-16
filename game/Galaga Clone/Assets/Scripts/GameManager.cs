@@ -40,22 +40,22 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.timeScale == 0)
-            {
-                Time.timeScale = 1;
-                pauseMenu.SetActive(false);
-            }
-            else
-            {
-                Time.timeScale = 0;
-                pauseMenu.SetActive(true);
-            }
-        }
-
         if (gameStarted == true)
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (Time.timeScale == 0)
+                {
+                    Time.timeScale = 1;
+                    pauseMenu.SetActive(false);
+                }
+                else
+                {
+                    Time.timeScale = 0;
+                    pauseMenu.SetActive(true);
+                }
+            }
+
             if (Enemies.Count <= 0)
             {
                 if (waveAmount >= 5)
