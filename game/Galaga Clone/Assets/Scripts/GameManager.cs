@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyType1;
     public GameObject background;
     public GameObject canvas;
+    public GameObject player;
     public GameObject gameOverMenu;
     public GameObject HUD;
     public int points;
@@ -89,5 +90,11 @@ public class GameManager : MonoBehaviour
             gameOverMenu.SetActive(true);
             gameOverMenu.GetComponentsInChildren<Transform>()[2].GetComponent<Text>().text = "Final Points: " + points;
         }
+    }
+
+    public void KillEnemy(GameObject enemy)
+    {
+        Enemies.Remove(Enemies[Enemies.IndexOf(enemy)]);
+        Destroy(enemy);
     }
 }

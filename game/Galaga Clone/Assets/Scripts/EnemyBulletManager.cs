@@ -2,26 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullets : MonoBehaviour
+public class EnemyBulletManager : MonoBehaviour
 {
     public int speed;
     private GameObject background;
     private GameObject player;
-    private GameManager gameManager;
 
     void Start()
     {
-        background =  GameObject.Find("Background");
+        background = GameObject.Find("Background");
         player = GameObject.Find("Player");
-        gameManager = GameObject.Find("EventSystem").GetComponent<GameManager>();
     }
 
     void Update()
     {
-        transform.Translate(Vector2.right * Time.deltaTime * speed);
+        transform.Translate(Vector2.left * Time.deltaTime * speed);
 
         RectTransform rect = (RectTransform)background.transform;
-        if (transform.position.x > rect.rect.width)
+        if (transform.position.x < 0)
         {
             Destroy(gameObject);
         }
@@ -29,10 +27,9 @@ public class PlayerBullets : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            gameManager.KillEnemy(collision.gameObject);
-            player.GetComponent<PlayerManager>().AddPoints(100);
+            player.GetComponent<PlayerManager>().RemoveHealth(1);
             Destroy(gameObject);
         }
     }
