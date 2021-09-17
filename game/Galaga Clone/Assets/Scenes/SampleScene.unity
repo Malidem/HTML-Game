@@ -367,7 +367,10 @@ MonoBehaviour:
   background: {fileID: 1142424723}
   canvas: {fileID: 693231156}
   dummy: {fileID: 2586931088904118658, guid: 9dffa8d357e59b645b1bdab7291b674b, type: 3}
-  canMove: 0
+  player: {fileID: 0}
+  gameStarted: 0
+  Enemies: []
+  Player: []
 --- !u!1 &693231156
 GameObject:
   m_ObjectHideFlags: 0

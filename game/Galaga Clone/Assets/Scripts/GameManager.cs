@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     public GameObject background;
     public GameObject canvas;
     public GameObject dummy;
+    public GameObject player;
 
     [HideInInspector]
     public bool gameStarted;
     [HideInInspector]
     public List<GameObject> Enemies = new List<GameObject>();
+    public List<GameObject> Player = new List<GameObject>();
 
     private int waveAmount = 2;
 
