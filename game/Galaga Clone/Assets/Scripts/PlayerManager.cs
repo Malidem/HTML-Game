@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject canvas;
     public GameObject eventSystem;
     public GameObject health;
+    public GameObject bullets;
     
     private GameManager gameManager;
     private List<GameObject> allHealth = new List<GameObject>();
