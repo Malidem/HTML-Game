@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,16 +9,29 @@ public class GameManager : MonoBehaviour
     public GameObject enemyType1;
     public GameObject background;
     public GameObject canvas;
+
     public GameObject dummy;
     public GameObject player;
+    public GameObject gameOverMenu;
+    public GameObject HUD;
+    public int points;
 
     [HideInInspector]
     public bool gameStarted;
     [HideInInspector]
     public List<GameObject> Enemies = new List<GameObject>();
     public List<GameObject> Player = new List<GameObject>();
+    [HideInInspector]
+    public bool gameOver;
+    [HideInInspector]
+    public Transform[] HUDElements;
 
     private int waveAmount = 2;
+
+    void Start()
+    {
+        HUDElements = HUD.GetComponentsInChildren<Transform>();
+    }
 
     public void SpawnEnemies()
     {
@@ -42,22 +56,22 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (gameStarted && gameOver == false)
         {
-            if (Time.timeScale == 0)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Time.timeScale = 1;
-                pauseMenu.SetActive(false);
+                if (Time.timeScale == 0)
+                {
+                    Time.timeScale = 1;
+                    pauseMenu.SetActive(false);
+                }
+                else
+                {
+                    Time.timeScale = 0;
+                    pauseMenu.SetActive(true);
+                }
             }
-            else
-            {
-                Time.timeScale = 0;
-                pauseMenu.SetActive(true);
-            }
-        }
 
-        if (gameStarted == true)
-        {
             if (Enemies.Count <= 0)
             {
                 if (waveAmount >= 5)
@@ -70,6 +84,14 @@ public class GameManager : MonoBehaviour
                 }
                 SpawnEnemies();
             }
+
+            HUDElements[2].gameObject.GetComponent<Text>().text = "Points: " + points;
+        }
+
+        if (gameOver)
+        {
+            gameOverMenu.SetActive(true);
+            gameOverMenu.GetComponentsInChildren<Transform>()[2].GetComponent<Text>().text = "Final Points: " + points;
         }
     }
 }

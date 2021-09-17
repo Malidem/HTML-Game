@@ -12,11 +12,17 @@ public class PlayerManager : MonoBehaviour
     public GameObject bullet;
     public GameObject canvas;
     public GameObject eventSystem;
+    public GameObject health;
+    
+
     private GameManager gameManager;
+    private List<GameObject> allHealth = new List<GameObject>();
+    
 
     void Start()
     {
         gameManager = eventSystem.GetComponent<GameManager>();
+        AddHealth(3);
     }
 
     void Update()
@@ -24,15 +30,15 @@ public class PlayerManager : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        if (gameManager.gameStarted)
+        if (gameManager.gameStarted && gameManager.gameOver == false)
         {
             transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speed);
-            transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speed); 
-        }
+            transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speed);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(bullet, transform.position, transform.rotation, canvas.transform);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(bullet, transform.position, transform.rotation, canvas.transform);
+            }
         }
 
         RectTransform rect = (RectTransform)background.transform;
@@ -59,5 +65,34 @@ public class PlayerManager : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x, (0 + sizeY));
         }
+
+        if (allHealth.Count <= 0)
+        {
+            gameManager.gameOver = true;
+            Destroy(gameObject);
+        }
+    }
+
+    public void RemoveHealth(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject obj = allHealth[allHealth.Count];
+            allHealth.Remove(obj);
+            Destroy(obj);
+        }
+    }
+
+    public void AddHealth(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            allHealth.Add(Instantiate(health, new Vector2(0, 0), gameManager.HUD.transform.rotation, gameManager.HUDElements[1]));
+        }
+    }
+
+    public void AddPoints(int amount)
+    {
+        gameManager.points += amount;
     }
 }
