@@ -24,7 +24,7 @@
     border: 5px solid rgb(0, 0, 0);
   } 
   .center-text{
-    text-align:center
+    text-align:center;
   }
   body {
     background-image: url('../images/galliga background2.jpg');
@@ -103,4 +103,16 @@ table, th, td {
   height:100px;
   width:100px;
   border: white solid 1px;
+}
+#controls-text {
+  position: absolute; top: 30%; left: 25%; right: 25%;
+}
+#controls-heading {
+  position: absolute; top: 27%; left: 25%; right: 25%;
+}
+#basic-info-text {
+  position: absolute; top: 15%; left: 25%; right: 25%
+}
+#basic-indo-heading {
+  position: absolute; top: 5%; left: 25%; right: 25%;
 }
