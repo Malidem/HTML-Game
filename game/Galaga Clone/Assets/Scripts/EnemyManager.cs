@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public GameObject player;
     public GameObject canvas;
-    public GameObject bullets;
-    float rotate = 25;
-    float speed = 100;
+    public GameObject bullet;
+    private GameObject bullets;
+    private float rotate = 25;
+    private float speed = 100;
+
     // Start is called before the first frame update
     void Start()
     {
-        //player = GameObject.Find("Player");
         canvas = GameObject.Find("Canvas");
+        bullets = GameObject.Find("Bullets");
         float y = canvas.transform.position.y;
         if (transform.position.y < y)
         {
@@ -29,7 +30,7 @@ public class EnemyManager : MonoBehaviour
     public IEnumerator SpawnBullets()
     {
         yield return new WaitForSeconds(.5f);
-        Instantiate(bullets, transform.position, transform.rotation, canvas.transform);
+        Instantiate(bullet, transform.position, transform.rotation, bullets.transform);
     }
 
     void Update()

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject gameOverMenu;
     public GameObject HUD;
+    public GameObject enemies;
     public int points;
 
     [HideInInspector]
@@ -38,15 +39,15 @@ public class GameManager : MonoBehaviour
             int num = Random.Range(1, 4);
             if (num == 1)
             {
-                Enemies.Add(Instantiate(enemyType1, new Vector2(rect.rect.width + 25, Random.Range(0, rect.rect.height)), transform.rotation, canvas.transform));
+                Enemies.Add(Instantiate(enemyType1, new Vector2(rect.rect.width + 25, Random.Range(0, rect.rect.height)), transform.rotation, enemies.transform));
             }
             else if (num == 2)
             {
-                Enemies.Add(Instantiate(enemyType1, new Vector2(Random.Range((rect.rect.width / 3) * 2, rect.rect.width + 25), rect.rect.height + 25), transform.rotation, canvas.transform));
+                Enemies.Add(Instantiate(enemyType1, new Vector2(Random.Range((rect.rect.width / 3) * 2, rect.rect.width + 25), rect.rect.height + 25), transform.rotation, enemies.transform));
             }
             else if (num == 3)
             {
-                Enemies.Add(Instantiate(enemyType1, new Vector2(Random.Range((rect.rect.width / 3) * 2, rect.rect.width + 25), -25), transform.rotation, canvas.transform));
+                Enemies.Add(Instantiate(enemyType1, new Vector2(Random.Range((rect.rect.width / 3) * 2, rect.rect.width + 25), -25), transform.rotation, enemies.transform));
             }
         }
     }
