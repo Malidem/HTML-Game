@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject canvas;
     public GameObject bullet;
     private GameObject bullets;
+    private GameManager gameManager;
     private float rotate = 25;
     private float speed = 100;
 
@@ -15,6 +16,7 @@ public class EnemyManager : MonoBehaviour
     {
         canvas = GameObject.Find("Canvas");
         bullets = GameObject.Find("Bullets");
+        gameManager = GameObject.Find("EventSystem").GetComponent<GameManager>();
         float y = canvas.transform.position.y;
         if (transform.position.y < y)
         {
@@ -29,7 +31,7 @@ public class EnemyManager : MonoBehaviour
 
     public IEnumerator SpawnBullets()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5F);
         Instantiate(bullet, transform.position, transform.rotation, bullets.transform);
     }
 
@@ -39,5 +41,10 @@ public class EnemyManager : MonoBehaviour
         //float angle = Vector2.Angle(direction, transform.forward);
         //print("angle: " + angle);
         transform.Translate(Vector2.left * Time.deltaTime * speed);
+
+        if (transform.position.x < -25)
+        {
+            gameManager.KillEnemy(gameObject);
+        }
     }
 }

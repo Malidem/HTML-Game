@@ -31,8 +31,11 @@ public class PlayerBullets : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            if (gameManager.gameOver == false)
+            {
+                player.GetComponent<PlayerManager>().AddPoints(100);
+            }
             gameManager.KillEnemy(collision.gameObject);
-            player.GetComponent<PlayerManager>().AddPoints(100);
             Destroy(gameObject);
         }
     }
