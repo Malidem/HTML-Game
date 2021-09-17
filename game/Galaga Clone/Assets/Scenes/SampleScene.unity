@@ -726,16 +726,13 @@ MonoBehaviour:
     type: 3}
   background: {fileID: 1142424723}
   canvas: {fileID: 693231156}
-
-  dummy: {fileID: 2586931088904118658, guid: 9dffa8d357e59b645b1bdab7291b674b, type: 3}
-  player: {fileID: 0}
-  gameStarted: 0
-  Enemies: []
-  Player: []
+  player: {fileID: 1510238983}
   gameOverMenu: {fileID: 1247771571}
   HUD: {fileID: 1412178585}
   points: 0
+  gameStarted: 0
   Enemies: []
+  Player: []
   gameOver: 0
   HUDElements: []
 --- !u!1 &693231156
@@ -1068,7 +1065,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Points: 100'
+  m_Text: 'Points: 0'
 --- !u!222 &1098301029
 CanvasRenderer:
   m_ObjectHideFlags: 0

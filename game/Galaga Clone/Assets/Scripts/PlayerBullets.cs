@@ -6,11 +6,13 @@ public class PlayerBullets : MonoBehaviour
 {
     public int speed;
     private GameObject background;
+    private GameObject player;
     private GameManager gameManager;
 
     void Start()
     {
         background =  GameObject.Find("Background");
+        player = GameObject.Find("Player");
         gameManager = GameObject.Find("EventSystem").GetComponent<GameManager>();
     }
 
@@ -29,8 +31,8 @@ public class PlayerBullets : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            gameManager.Enemies.Remove(collision.gameObject);
-            Destroy(collision.gameObject);
+            gameManager.KillEnemy(collision.gameObject);
+            player.GetComponent<PlayerManager>().AddPoints(100);
             Destroy(gameObject);
         }
     }

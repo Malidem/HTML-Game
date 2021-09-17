@@ -6,13 +6,12 @@ public class EnemyBulletManager : MonoBehaviour
 {
     public int speed;
     private GameObject background;
-    private GameManager gameManager;
     private GameObject player;
 
     void Start()
     {
         background = GameObject.Find("Background");
-        gameManager = GameObject.Find("EventSystem").GetComponent<GameManager>();
+        player = GameObject.Find("Player");
     }
 
     void Update()
@@ -30,8 +29,7 @@ public class EnemyBulletManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            gameManager.Player.Remove(collision.gameObject);
-            Destroy(collision.gameObject);
+            player.GetComponent<PlayerManager>().RemoveHealth(1);
             Destroy(gameObject);
         }
     }

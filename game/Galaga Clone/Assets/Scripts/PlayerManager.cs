@@ -14,10 +14,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject eventSystem;
     public GameObject health;
     
-
     private GameManager gameManager;
     private List<GameObject> allHealth = new List<GameObject>();
-    
 
     void Start()
     {
@@ -77,7 +75,7 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject obj = allHealth[allHealth.Count];
+            GameObject obj = allHealth[allHealth.Count -1];
             allHealth.Remove(obj);
             Destroy(obj);
         }
@@ -94,5 +92,14 @@ public class PlayerManager : MonoBehaviour
     public void AddPoints(int amount)
     {
         gameManager.points += amount;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            gameManager.KillEnemy(collision.gameObject);
+            RemoveHealth(1);
+        }
     }
 }
