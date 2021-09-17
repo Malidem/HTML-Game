@@ -120,3 +120,8 @@ table, th, td {
   margin: auto;
   width: 1000px;
 }
+.screenshot {
+  position:relative; left: 15%; right: 0%;
+  width: 35%;
+  height: 40%;
+  }
