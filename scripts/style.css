@@ -105,14 +105,18 @@ table, th, td {
   border: white solid 1px;
 }
 #controls-text {
-  position: absolute; top: 30%; left: 25%; right: 25%;
+  position: relative; top: 2%; bottom: 10%;
 }
 #controls-heading {
-  position: absolute; top: 27%; left: 25%; right: 25%;
+  position: relative; top: 2%; bottom: 10%;
+}
+#basic-info-heading {
+  position: relative; top: 2%; bottom: 10%;
 }
 #basic-info-text {
-  position: absolute; top: 15%; left: 25%; right: 25%
+  position: relative; top: 2%; bottom: 10%;
 }
-#basic-indo-heading {
-  position: absolute; top: 5%; left: 25%; right: 25%;
+#unity {
+  margin: auto;
+  width: 1000px;
 }
